@@ -30,18 +30,52 @@ const Header = () => {
 // <React.Fragment>로 다른 태그를 감싸면 최사위 태그를 대체하는 효과가 있다. 단, 페이지에서 <React.Fragment> 태그는 랜더링 되지 않는다.
 // <React.Fragment> 태그 대신 '<></>' 빈 태그를 사용할 수도 있다.
 
+// ----------------------------------------------------------------------------------------------------
+
+// 컴포넌트에 값 전달하기
+// 리액트 앱을 만들다 보면 컴포넌트가 다른 컴포넌트에 값을 전달해야 하는 상황이 빈번하다.
+// 이때 활용할 수 있는 것이 Props 이다.
+
+// Props란?
+// 리액트에서는 부모가 자식 컴포넌트에 단일 객체 형태로 값을 전달할 수 있다.
+// 이 객체를 리액트에서는 Props(Properties)라고 한다. Props는 Properties의 약자이다.
+// 리액트의 컴포넌트와 Props를 샌드위치 제조에 비유한다면 샌드위치의 겉을 둘러싸고 있는 빵은 컴포넌트이고, 샌드위치의 속은 Props와 같다.
+// 보통 리액트에서 컴포넌트에 값을 전달하는 경우는 세부사항들, 즉 컴포넌트의 속성을 지정하는 경우가 대부분이다.
+// 따라서 컴포넌트에 값을 전달하는 속성들이라는 점에서 Properties라고 부르며, 이를 간단히 Props라고 한다.
+// Props는 부모컴포넌트만이 자식 컴포넌트로 전달할 수 있다.
+
 import HEADER from './components/Header'
 import BODY from './components/Body'
 import FOOTER from './components/Footer'
 
+function ChildComp() {
+    return <div>Child Component</div>
+}
+
 function App() {
+    const name = '마르코'
+    const location = '서울'
+    // Body 컴포넌트에서 Props로 전달할 값을 객체 BodyProps로 만든다.
+    const bodyProps = {
+        name: 'React',
+        age: 2013,
+        food: ['파스타', '빵', '떡볶이'],
+    }
+
     return (
         <div className="App">
             {/* 컴포넌트 이름의 첫 글자는 대문자로 작성하지 않아도 에러가 발생하지는 않는다.  */}
             {/* 그러나 정상적인 리액트 컴포넌트로 인식하지 않기 때문에 의도치 않은 결과가 나타날 수 있으며, 리액트가 제공하는 여러 유용한 기능도 사용할 수 없다. */}
-            <HEADER />
-            <BODY />
-            <FOOTER />
+            {/* Props를 전달하려는 자식 컴포넌트 태그에서 '이름={값}' 형식으로 작성하면 된다. */}
+            <HEADER name={name} location={location} />
+            {/* 스프레드 연산자로 객체 BodyProps 각각의 프로퍼티를 Props로 전달하게 된다. */}
+            <BODY {...bodyProps} />
+            <FOOTER>
+                {/* 1. ChildComp라는 새로운 컴포넌트를 만든다. */}
+                {/* ChildComp를 Footer 컴포넌트의 자식요소로 배치한다. */}
+                {/* 리액트에서는 자식 컴포넌트에 또 다른 컴포넌트를 배치하면, 배치된 컴포넌트는 자동으로 Props의 children 프로퍼티에 저장되어 전달된다. */}
+                <ChildComp />
+            </FOOTER>
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
+import '../assets/styles/body.css'
 
-function Body() {
+function Body({ namge, age, food }) {
     // 상수 number를 선언하고 값 1을 지정한다.
     const number = 99
 
@@ -37,8 +38,18 @@ function Body() {
             <div style={{ backgroundColor: 'red', color: 'blue' }}>
                 <h1>JSX Inline Styling Test Code</h1>
             </div>
+            {/* class가 자바스크립트의 예약어이기 때문에 className이라는 네이밍을 활용한다. */}
+            <div className="body">
+                <h1>JSX Import Styling Test Code</h1>
+            </div>
+            {/* Props 테스트 */}
+            {food}
         </React.Fragment>
     )
+}
+// Body 컴포넌트가 받을 Props에서 food의 기본 값을 빈 배열로 설정한다.
+Body.defaultProps = {
+    food: [],
 }
 
 export default Body
