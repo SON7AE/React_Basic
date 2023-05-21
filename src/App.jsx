@@ -81,6 +81,7 @@ import BODY from './components/Body'
 import STATE from './components/State'
 import FOOTER from './components/Footer'
 import PROPS_STATE from './components/Props'
+import REF from './components/Ref'
 
 function ChildComp() {
     return <div>Child Component</div>
@@ -112,6 +113,7 @@ function App() {
                 <ChildComp />
             </FOOTER>
             <PROPS_STATE />
+            <REF />
         </div>
     )
 }
