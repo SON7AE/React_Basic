@@ -80,6 +80,7 @@ import HEADER from './components/Header'
 import BODY from './components/Body'
 import STATE from './components/State'
 import FOOTER from './components/Footer'
+import PROPS_STATE from './components/Props'
 
 function ChildComp() {
     return <div>Child Component</div>
@@ -110,6 +111,7 @@ function App() {
                 {/* 리액트에서는 자식 컴포넌트에 또 다른 컴포넌트를 배치하면, 배치된 컴포넌트는 자동으로 Props의 children 프로퍼티에 저장되어 전달된다. */}
                 <ChildComp />
             </FOOTER>
+            <PROPS_STATE />
         </div>
     )
 }

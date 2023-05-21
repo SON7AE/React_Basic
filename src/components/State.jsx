@@ -63,6 +63,23 @@ function State() {
         setBio(event.target.value)
     }
 
+    // 위 코드를 클린하게 / 간결하게 고쳐보자.
+    const [state, setState] = useState({
+        name: '',
+        gender: '',
+        birth: '',
+        bio: '',
+    })
+    const handleOnChangeState = (event) => {
+        console.log('현재 수정 대상: ', event.target.name)
+        console.log('수정 값: ', event.target.value)
+
+        setState({
+            ...state,
+            [event.target.name]: event.target.value,
+        })
+    }
+
     return (
         <React.Fragment>
             <div>{count}</div>
@@ -75,7 +92,7 @@ function State() {
                 <option key={'2번'}>2번</option>
                 <option key={'3번'}>3번</option>
             </select>
-
+            {/* State 코드 */}
             <div>
                 <input type="text" value={name} onChange={onChangeName} placeholder="이름" />
             </div>
@@ -90,7 +107,30 @@ function State() {
                 <input type="date" value={birth} onChange={onChangeBirth} />
             </div>
             <div>
-                <input type="text" value={bio} onChange={onChangeBio} />
+                <textarea type="text" value={bio} onChange={onChangeBio} />
+            </div>
+            {/* 간결한 State를 위한 코드 */}
+            {/* 1. 객체 자료형으로 State를 하나 생성하고 초깃값을 설정한다. State 변수인 객체 state의 초깃값은 모두 공백 문자열이다. */}
+            {/* 2. 모든 입력 폼에서 name 속성을 지정한다. 예를 들어 이름을 입력하는 <input> 태그의 name 속성은 "name"으로 지정한다. */}
+            {/* 3. 모든 입력 폼의 value 속성에는 state.name을 지정하는데, 객체 state의 name프로퍼티와 동일한 값으로 설정한다. 나머지 태그에도 value 속성을 이같이 변경한다. */}
+            {/* 4. 사용자의 입력을 처리할 이벤트 핸들러를 설정한다. 나머지 태그에도 동일하게 설정한다. */}
+            <div>
+                <div>
+                    <input type="text" name="name" value={state.name} onChange={handleOnChangeState} placeholder="이름" />
+                </div>
+                <div>
+                    <select value={state.gender} name="gender" onChange={handleOnChangeState}>
+                        <option key={''}></option>
+                        <option key={'남성'}>남성</option>
+                        <option key={'여성'}>여성</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="date" name="birth" value={state.birth} onChange={handleOnChangeState} />
+                </div>
+                <div>
+                    <textarea type="text" name="bio" value={state.bio} onChange={handleOnChangeState} />
+                </div>
             </div>
         </React.Fragment>
     )
