@@ -22,6 +22,13 @@ const Header = () => {
 
 // 1. 닫힘 규칙
 // 닫힘 규칙은 아주 간단한 규칙이다. JSX의 모든 태그는 여는 태그가 있으면 반드시 닫는 태그도 있어야 한다는 규칙이다.
+// JSX 문법 오류가 발생하면 비주얼 스튜디오 코드에서는 붉은 밑줄로 오류가 있다고 표시한다.
+
+// 2. 최상위 태그 규칙
+// JSX가 반환하는 모든 태그는 반드시 최상위 태그로 감싸야 한다.
+// HTML 태그를 최상위 태그로 사용하지 않으려면, <React.Fragment> 태그를 사용하면 된다.
+// <React.Fragment>로 다른 태그를 감싸면 최사위 태그를 대체하는 효과가 있다. 단, 페이지에서 <React.Fragment> 태그는 랜더링 되지 않는다.
+// <React.Fragment> 태그 대신 '<></>' 빈 태그를 사용할 수도 있다.
 
 import HEADER from './components/Header'
 import BODY from './components/Body'
